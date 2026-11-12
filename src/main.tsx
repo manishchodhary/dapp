@@ -17,7 +17,7 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 import "./index.css";
 
 
-const endpoint = "https://solana-devnet.g.alchemy.com/v2/alch_v9XSiAMzGmXAfBzwTA2jP";
+const endpoint = import.meta.env.ENDPOINT;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
