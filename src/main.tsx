@@ -22,34 +22,37 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
-          <div style={{ width: "100%", height: "600px", position: "relative" }}>
-            <GradientASCII
-              colors={["#a855f7", "#e8f0ff", "#a855f7", "#7c3aed"]}
-              shape="pinch"
-              characters=" =+xX0S8#@"
-              cellSize={18}
-              density={0.8}
-              glyphOpacity={0.85}
-              glow={0.2}
-              depthOfField={0}
-              flicker={0.2}
-              softness={0.5}
-              scale={1}
-              flow={0.5}
-              speed={1}
-              gradientOpacity={0.9}
-              grain={0.08}
-              variation={0}
-              mouseInteraction
-              scrambleRadius={0.1}
-              clickEffect="burst"
-              intro
-              lightMode
-            >
+          <div className="relative min-h-screen">
+            <div className="pointer-events-none fixed inset-0 z-0">
+              <GradientASCII
+                colors={["#a855f7", "#e8f0ff", "#a855f7", "#7c3aed"]}
+                shape="pinch"
+                characters=" =+xX0S8#@"
+                cellSize={18}
+                density={0.8}
+                glyphOpacity={0.85}
+                glow={0.2}
+                depthOfField={0}
+                flicker={0.2}
+                softness={0.5}
+                scale={1}
+                flow={0.5}
+                speed={1}
+                gradientOpacity={0.9}
+                grain={0.08}
+                variation={0}
+                mouseInteraction
+                scrambleRadius={0.1}
+                clickEffect="burst"
+                intro
+                lightMode
+              ></GradientASCII>
+            </div>
+            <div className="relative z-10">
+              {" "}
               <App />
-            </GradientASCII>
+            </div>
           </div>
-          <App />
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
