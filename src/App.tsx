@@ -14,7 +14,7 @@ function Navbar() {
       <div className="flex h-[68px] w-full items-center justify-between gap-3 px-4 sm:px-6">
         <NavLink
           to="/"
-          className="shrink-0 text-xl font-bold tracking-tight text-[#241b35]"
+          className="brand shrink-0 text-xl font-bold tracking-tight text-[#241b35]"
         >
           Lamport<span className="text-purple-600">.</span>
         </NavLink>

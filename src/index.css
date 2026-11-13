@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   color: #241b35;
   background: #f8f7fc;
   font-synthesis: none;
@@ -244,4 +244,23 @@ button {
   html {
     @apply font-sans;
   }
+}
+
+h1,
+h2,
+h3,
+.brand {
+  font-family: "Space Grotesk", "Geist Variable", sans-serif;
+  letter-spacing: -0.045em;
+}
+
+.font-mono,
+code,
+pre {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: -0.025em;
+}
+
+.wallet-adapter-button {
+  letter-spacing: -0.015em;
 }
