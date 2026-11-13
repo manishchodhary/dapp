@@ -15,7 +15,7 @@ import "./index.css";
 import GradientASCII from "./components/GradientASCII";
 
 const endpoint =
-  "https://solana-devnet.g.alchemy.com/v2/alch_v9XSiAMzGmXAfBzwTA2jP";
+  import.meta.env.VITE_SOLANA_RPC_URL || "https://api.devnet.solana.com";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
