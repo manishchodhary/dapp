@@ -4,6 +4,8 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { requestSolAirdrop } from "./lib/airdrop";
 
+const DEVNET_FAUCET_URL = "https://faucet.solana.com/";
+
 function Airdrop() {
   const pageRef = useRef<HTMLElement>(null);
 
@@ -31,6 +33,7 @@ function Airdrop() {
   const [balanceLoading, setBalanceLoading] = useState(false);
   const [airdropLoading, setAirdropLoading] = useState(false);
   const [error, setError] = useState("");
+  const [faucetRequired, setFaucetRequired] = useState(false);
   const [signature, setSignature] = useState("");
 
   const refreshBalance = useCallback(async () => {
@@ -75,6 +78,7 @@ function Airdrop() {
     try {
       setAirdropLoading(true);
       setError("");
+      setFaucetRequired(false);
       setSignature("");
 
       const txSignature = await requestSolAirdrop(
@@ -88,11 +92,24 @@ function Airdrop() {
     } catch (err) {
       console.error("Airdrop failed:", err);
 
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong while requesting airdrop."
-      );
+      const errorMessage =
+        err instanceof Error ? err.message : String(err);
+      const errorDetails = errorMessage.toLowerCase();
+
+      if (
+        errorDetails.includes("410") ||
+        errorDetails.includes("faucet is closed") ||
+        errorDetails.includes("rpc faucet")
+      ) {
+        setFaucetRequired(true);
+        setError(
+          "The Devnet RPC faucet is unavailable. Request test SOL from the official Solana faucet instead."
+        );
+      } else {
+        setError(
+          errorMessage || "Something went wrong while requesting airdrop."
+        );
+      }
     } finally {
       setAirdropLoading(false);
     }
@@ -198,8 +215,30 @@ function Airdrop() {
           </p>
 
           {error && (
-            <div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-              {error}
+            <div
+              role="alert"
+              className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+            >
+              <p>{error}</p>
+              {faucetRequired && (
+                <div className="mt-3 rounded-md border border-purple-200 bg-white p-3 text-sm text-[#514663]">
+                  <p className="font-medium text-[#30263f]">
+                    Get Devnet SOL from the official faucet
+                  </p>
+                  <p className="mt-1 text-xs text-[#81788e]">
+                    Copy your wallet address above, open the faucet, paste the
+                    address, and request test SOL.
+                  </p>
+                  <a
+                    href={DEVNET_FAUCET_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center rounded-md bg-purple-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-purple-700"
+                  >
+                    Open Solana Faucet ↗
+                  </a>
+                </div>
+              )}
             </div>
           )}
 
