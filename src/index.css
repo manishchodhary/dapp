@@ -8,7 +8,7 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   color: #241b35;
-  background: transparent;
+  background: #f8f7fc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --background: oklch(1 0 0);
@@ -54,7 +54,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100%;
-  background: transparent;
+  background: #f8f7fc;
 }
 
 body {
@@ -239,8 +239,7 @@ button {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply text-foreground;
-    background: transparent;
+    @apply bg-background text-foreground;
   }
   html {
     @apply font-sans;

@@ -1,9 +1,28 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import type { ConfirmedSignatureInfo } from "@solana/web3.js";
 
 function Account() {
+  const pageRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    if (!pageRef.current) return;
+
+    const context = gsap.context(() => {
+      gsap.from(pageRef.current!.children, {
+        y: 36,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.16,
+        ease: "bounce.out",
+        clearProps: "all",
+      });
+    }, pageRef);
+
+    return () => context.revert();
+  }, []);
   const { connection } = useConnection();
   const { publicKey, connected } = useWallet();
 
@@ -94,7 +113,7 @@ function Account() {
   ];
 
   return (
-    <main className="mx-auto max-w-5xl px-5 pb-10 pt-12">
+    <main ref={pageRef} className="mx-auto max-w-5xl px-5 pb-10 pt-12">
       <div className="mb-9 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-[#241b35]">

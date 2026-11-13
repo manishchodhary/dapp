@@ -15,8 +15,8 @@ function App() {
       gsap.from(navbarRef.current, {
         y: -36,
         opacity: 0,
-        duration: 0.85,
-        ease: "power3.out",
+        duration: 1.65,
+        ease: "bounce.out",
         clearProps: "all",
       });
     }, navbarRef);
@@ -31,7 +31,7 @@ function App() {
           ref={navbarRef}
           className="sticky top-0 z-40 w-full rounded-b-2xl border-x border-b border-t border-purple-200/80 bg-white/75 shadow-sm shadow-purple-100/40 backdrop-blur-xl"
         >
-          <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-5 sm:px-6">
+          <div className="flex h-[76px] w-full items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
             <NavLink
               to="/"
               className="shrink-0 text-xl font-bold tracking-tight text-[#241b35]"
