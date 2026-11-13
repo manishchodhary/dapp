@@ -14,8 +14,25 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 import "./index.css";
 import GradientASCII from "./components/GradientASCII";
 
-const endpoint =
-  import.meta.env.VITE_SOLANA_RPC_URL || "https://api.devnet.solana.com";
+const endpoint = import.meta.env.VITE_SOLANA_RPC_URL?.trim();
+
+if (!endpoint) {
+  throw new Error(
+    "Missing VITE_SOLANA_RPC_URL. Add it to .env.local in the project root and restart the Vite server."
+  );
+}
+
+try {
+  const rpcUrl = new URL(endpoint);
+
+  if (rpcUrl.protocol !== "https:" && rpcUrl.protocol !== "http:") {
+    throw new Error("RPC URL must start with http:// or https://");
+  }
+} catch {
+  throw new Error(
+    "Invalid VITE_SOLANA_RPC_URL. Provide a complete RPC URL starting with https://."
+  );
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
