@@ -10,7 +10,7 @@ function Navbar() {
   const activeIndex = location.pathname === "/account" ? 1 : 0;
 
   return (
-    <header className="sticky top-4 z-40 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl border border-purple-200/80 bg-white/75 shadow-sm shadow-purple-100/40 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl border border-purple-200/80 bg-white/75 shadow-sm shadow-purple-100/40 backdrop-blur-xl">
       <div className="flex h-[68px] w-full items-center justify-between gap-3 px-4 sm:px-6">
         <NavLink
           to="/"
