@@ -10,13 +10,13 @@ function Navbar() {
   const activeIndex = location.pathname === "/account" ? 1 : 0;
 
   return (
-    <header className="sticky top-0 z-40 w-full rounded-b-2xl border-x border-b border-t border-purple-200/80 bg-white/75 shadow-sm shadow-purple-100/40 backdrop-blur-xl">
-      <div className="flex h-[76px] w-full items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
+    <header className="sticky top-4 z-40 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl border border-purple-200/80 bg-white/75 shadow-sm shadow-purple-100/40 backdrop-blur-xl">
+      <div className="flex h-[68px] w-full items-center justify-between gap-3 px-4 sm:px-6">
         <NavLink
           to="/"
           className="shrink-0 text-xl font-bold tracking-tight text-[#241b35]"
         >
-          Solscope<span className="text-purple-600">.</span>
+          Lamport<span className="text-purple-600">.</span>
         </NavLink>
 
         <div className="flex items-center gap-3 sm:gap-8">
