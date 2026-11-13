@@ -32,7 +32,7 @@ function Navbar() {
             color="#7c3aed"
             activeTextColor="#ffffff"
             colors={["#a855f7", "#7c3aed"]}
-            size="sm"
+            size="md"
             frame={false}
             animationTime={650}
             particleCount={12}
